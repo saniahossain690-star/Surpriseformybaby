@@ -2,102 +2,151 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Surprise for My Love</title>
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>For My Favorite Person 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Sacramento&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Patrick Hand', cursive;
-      text-align: center;
-      background: #fff0f5;
-      color: #333;
-      padding: 50px;
-    }
-    h1 {
-      font-size: 2.5em;
-      color: #ff4da6;
-      animation: bounce 1s infinite;
-    }
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-15px); }
-      60% { transform: translateY(-8px); }
-    }
-    button {
-      padding: 15px 25px;
-      margin: 10px;
-      font-size: 18px;
-      cursor: pointer;
-      border-radius: 12px;
-      border: none;
-      background: #ff99cc;
-      color: white;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 15px #ff4da6;
-    }
-    .hidden { display: none; opacity: 0; }
-    .fadeIn { animation: fadeIn 0.6s forwards; }
-    @keyframes fadeIn { to { opacity: 1; } }
-    .gift { margin-top: 30px; }
-    .emoji { font-size: 2em; animation: float 2s infinite; }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+    body {margin:0; background:#fff7fb; font-family:Poppins,sans-serif; color:#2a2a2a; line-height:1.55;}
+    .wrap{max-width:980px;margin:0 auto;padding:24px}
+    header{text-align:center;margin:28px 0 6px}
+    header h1{font-family:Sacramento,cursive;font-size:54px;color:#ff5fa2;margin:0}
+    .card{background:#fff;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:22px;text-align:center}
+    .btn{cursor:pointer;border:none;border-radius:999px;padding:12px 20px;font-weight:700;font-size:16px;margin:6px}
+    .btn-primary{background:#ff5fa2;color:white}
+    .btn-ghost{background:transparent;color:#ff5fa2;border:2px solid #ff5fa2}
+    .hidden{display:none}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:20px}
+    .gift{background:linear-gradient(135deg,#fff,#ffeaf4);border-radius:18px;padding:20px;cursor:pointer}
+    .gift h3{margin:0;font-size:22px}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:12px}
+    .shot img{width:100%;border-radius:12px}
+    .shot figcaption{padding:6px;font-size:14px}
+    .reasons{columns:1;column-gap:22px;margin-top:12px}
+    @media(min-width:720px){.reasons{columns:2}}
+    .reason{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:12px;padding:12px;margin:0 0 12px}
+    .letter{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:18px;margin-top:12px;position:relative;z-index:1}
+    .sig{font-family:Sacramento,cursive;font-size:32px;color:#ff5fa2}
+    .flower-wrap{text-align:center;margin-top:12px}
+    svg{max-width:400px;width:100%;height:auto}
+    /* Confetti */
+    .confetti-piece {position: fixed; width: 8px; height: 14px; background-color: #ff5fa2; top: 0; opacity: 0.7; z-index: 9999;}
   </style>
 </head>
 <body>
+  <div class="wrap">
+    <header>
+      <h1>For You, My Love 💌</h1>
+    </header>
 
-  <h1>Hey Baby! ❤️</h1>
-  <p>I made you a surprise. Do you want to see your gift?</p>
-  <button onclick="handleChoice('yes')">Yes, Please! 💖</button>
-  <button onclick="handleChoice('no')">No, thank you 😢</button>
+    <!-- Intro -->
+    <div id="intro" class="card">
+      <h2>Hey Baby! I made you a surprise. Do you want to see your gift?</h2>
+      <button class="btn btn-primary" id="yesBtn">Yes, please ✨</button>
+      <button class="btn btn-ghost" id="noBtn">No, thank you</button>
+      <div id="nudges" class="hidden">Promise you'll love it! Try again 💖</div>
+    </div>
 
-  <div id="noMessage" class="hidden fadeIn">
-    <p>Promise you'll love it! Try again 😘</p>
-  </div>
+    <!-- Dashboard -->
+    <section id="dashboard" class="hidden">
+      <div class="grid">
+        <button class="gift" data-target="#gift1"><h3>My Favorite Memories with Matty 🦔</h3></button>
+        <button class="gift" data-target="#gift2"><h3>Virtual Flower 🌸</h3></button>
+        <button class="gift" data-target="#gift3"><h3>15 Things I Love About You 💕</h3></button>
+        <button class="gift" data-target="#gift4"><h3>The Final Message 💌</h3></button>
+      </div>
+    </section>
 
-  <div id="gifts" class="hidden gift fadeIn">
-    <p>Choose a gift to see:</p>
-    <button onclick="showGift(1)">Gift 1 🎁</button>
-    <button onclick="showGift(2)">Gift 2 🌸</button>
-    <button onclick="showGift(3)">Gift 3 ❤️</button>
-    <button onclick="showGift(4)">Gift 4 ✨</button>
+    <!-- Gift 1 -->
+    <section id="gift1" class="hidden">
+      <h2>📸 My Favorite Memories with Matty 🦔</h2>
+      <div class="gallery">
+        <figure class="shot"><img src="assets/IMG_4542.jpg" alt="Memory"><figcaption>Acey's Bday picnic 🎉🌳</figcaption></figure>
+        <figure class="shot"><img src="assets/IMG_4545.jpg" alt="Memory"><figcaption>Our first (outside Hunter) date 💕🍜</figcaption></figure>
+        <figure class="shot"><img src="assets/IMG_4546.jpg" alt="Memory"><figcaption>Valentine's Day 🌹❤️</figcaption></figure>
+        <figure class="shot"><img src="assets/IMG_4544.jpg" alt="Memory"><figcaption>First date! ✨🥰</figcaption></figure>
+        <figure class="shot"><img src="assets/IMG_4543.jpg" alt="Memory"><figcaption>Matching Desi fits at Formal! 🥻🕌</figcaption></figure>
+      </div>
+    </section>
 
-    <div id="giftContent" class="hidden" style="margin-top:20px; font-size:1.2em;"></div>
+    <!-- Gift 2 -->
+    <section id="gift2" class="hidden">
+      <h2>🌷 A Bouquet of Us</h2>
+      <div class="flower-wrap">
+        <svg viewBox="0 0 600 600">
+          <circle cx="300" cy="300" r="42" fill="#ffd1e6" stroke="#ff5fa2" stroke-width="3"></circle>
+          <text x="300" y="307" text-anchor="middle" class="sig">you + me</text>
+          <ellipse cx="300" cy="150" rx="40" ry="70" fill="#ffe6f3" stroke="#ff5fa2" stroke-width="2"></ellipse>
+          <ellipse cx="450" cy="300" rx="40" ry="70" fill="#ffd8ec" stroke="#ff5fa2" stroke-width="2"></ellipse>
+          <ellipse cx="300" cy="450" rx="40" ry="70" fill="#ffe6f3" stroke="#ff5fa2" stroke-width="2"></ellipse>
+          <ellipse cx="150" cy="300" rx="40" ry="70" fill="#ffd8ec" stroke="#ff5fa2" stroke-width="2"></ellipse>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Gift 3 -->
+    <section id="gift3" class="hidden">
+      <h2>💕 15 Things I Love About You</h2>
+      <div class="reasons">
+        <div class="reason"><strong>1.</strong> Your beautiful smile ✨</div>
+        <div class="reason"><strong>2.</strong> How respectful and kind you are 💕</div>
+        <div class="reason"><strong>3.</strong> Smile lines & the mole I love to kiss 😘</div>
+        <div class="reason"><strong>4.</strong> My performative male 🦸‍♂️</div>
+        <div class="reason"><strong>5.</strong> Always reassuring me 🤗</div>
+        <div class="reason"><strong>6.</strong> How you make me laugh 😂</div>
+        <div class="reason"><strong>7.</strong> 10/10 style in clothing 👕</div>
+        <div class="reason"><strong>8.</strong> You never say no to me 🥹</div>
+        <div class="reason"><strong>9.</strong> How you grab my waist 🤝</div>
+        <div class="reason"><strong>10.</strong> Never give up (very strong) 💪</div>
+        <div class="reason"><strong>11.</strong> Super smart 🧠</div>
+        <div class="reason"><strong>12.</strong> Literally irl Spiderman 🕷️</div>
+        <div class="reason"><strong>13.</strong> My personal nerd 🤓</div>
+        <div class="reason"><strong>14.</strong> Beautiful hazel eyes 👀</div>
+        <div class="reason"><strong>15.</strong> Your love for your family 🫂</div>
+      </div>
+    </section>
+
+    <!-- Gift 4 -->
+    <section id="gift4" class="hidden">
+      <h2>💌 The Final Message</h2>
+      <div class="letter">
+        <p>Happy National bfs day baby. I'm so lucky to have you. You're the best thing in my life right now (& I wouldn't want to change a thing about it). You're the sunshine that never stops shining. Whenever I see you I instantly feel safe and have a smile on my face. I love you so so much that I can't ever use words to describe the feeling. You give me so much butterflies by simply staring at me with your beautiful hazel eyes. I get nervous every time you come to see me or I go to see you. Which is very weird cuz I never feel nervous around any men. But with you there's not a single feeling I don't feel. Even the feelings I don't want to feel, I get jealous, I get angry, I get sad, --> all of this simply because I'm not able to be with you at all times. I can't wait to kiss you so much tomorrow baby. You're working so hard and I'll always be so so proud of you. Even if no one in the world is proud (which will never happen) I'll always be so proud of my handsome spidey &lt;3</p>
+      </div>
+    </section>
   </div>
 
   <script>
-    function handleChoice(choice) {
-      if(choice === 'yes') {
-        document.getElementById('gifts').classList.remove('hidden');
-        document.getElementById('gifts').classList.add('fadeIn');
-        document.getElementById('noMessage').classList.add('hidden');
-      } else {
-        document.getElementById('noMessage').classList.remove('hidden');
-        document.getElementById('noMessage').classList.add('fadeIn');
+    const intro = document.getElementById('intro');
+    const dash = document.getElementById('dashboard');
+    const nudges = document.getElementById('nudges');
+    document.getElementById('yesBtn').addEventListener('click',()=>{intro.classList.add('hidden');dash.classList.remove('hidden');});
+    document.getElementById('noBtn').addEventListener('click',()=>{nudges.classList.remove('hidden');});
+    document.querySelectorAll('.gift').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        ['#gift1','#gift2','#gift3','#gift4'].forEach(id=>document.querySelector(id).classList.add('hidden'));
+        const target = document.querySelector(btn.dataset.target);
+        target.classList.remove('hidden');
+        window.scrollTo({top:0,behavior:'smooth'});
+        if(btn.dataset.target==="#gift4"){launchConfetti();}
+      });
+    });
+
+    // Confetti animation
+    function launchConfetti(){
+      for(let i=0;i<100;i++){
+        const confetti=document.createElement('div');
+        confetti.classList.add('confetti-piece');
+        confetti.style.left=Math.random()*100+'vw';
+        confetti.style.backgroundColor = ['#ff5fa2','#ffd1e6','#ffeaf4','#ff8ac6'][Math.floor(Math.random()*4)];
+        confetti.style.animation=`fall ${2+Math.random()*3}s linear forwards`;
+        document.body.appendChild(confetti);
+        setTimeout(()=>confetti.remove(),5000);
       }
     }
 
-    function showGift(number) {
-      let content = '';
-      if(number === 1) {
-        content = "💖 Our favorite memories: <br> - Memory 1 <span class='emoji'>💌</span><br> - Memory 2 <span class='emoji'>📸</span><br> - Memory 3 <span class='emoji'>🌟</span>";
-      } else if(number === 2) {
-        content = "🌸 Virtual Flowers 🌸 <br> With messages: You're amazing <span class='emoji'>🌷</span>, I love you <span class='emoji'>💐</span>, You're my sunshine <span class='emoji'>☀️</span>";
-      } else if(number === 3) {
-        content = "❤️ 20 things I love about you: <br> 1. Your smile <span class='emoji'>😊</span><br>2. Your laugh <span class='emoji'>😂</span><br>...<br>20. You complete me <span class='emoji'>💕</span>";
-      } else if(number === 4) {
-        content = "🎁 Final Message: Babe, I love you more than words. Happy National BF Day! 😘 <span class='emoji'>✨💖</span>";
-      }
-      let giftDiv = document.getElementById('giftContent');
-      giftDiv.innerHTML = content;
-      giftDiv.classList.remove('hidden');
-      giftDiv.classList.add('fadeIn');
-    }
+    // Confetti falling animation keyframes
+    const style=document.createElement('style');
+    style.innerHTML=`@keyframes fall {to {transform: translateY(100vh) rotate(720deg);opacity:0;}}`;
+    document.head.appendChild(style);
   </script>
-
 </body>
 </html>
